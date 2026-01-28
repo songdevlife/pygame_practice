@@ -1,3 +1,4 @@
+import random
 import pygame
 
 pygame.init()
@@ -43,8 +44,10 @@ enermy = pygame.image.load("C:\\Users\\User\\Downloads\\game_project\\pygame_bas
 enermy_size = enermy.get_rect().size
 enermy_width = enermy_size[0]
 enermy_height = enermy_size[1]
-enermy_x_pos = (screen_width / 2) - (enermy_width / 2)
-enermy_y_pos = (screen_height / 2)- (enermy_height / 2)
+enermy_x_pos = random.randint(0, screen_width - enermy_width)
+enermy_y_pos = 0
+
+enermy_speed = 10
 
 # Running with while loop
 
@@ -85,7 +88,13 @@ while running:
         character_y_pos = 0
     elif character_y_pos > screen_height - character_height:
         character_y_pos = screen_height - character_height
+        
 
+    enermy_y_pos += enermy_speed
+
+    if enermy_y_pos > screen_height:
+        enermy_y_pos = 0
+        enermy_x_pos = random.randint(0, screen_width - enermy_width)
 
     # collision for rect information update
     character_rect = character.get_rect()
